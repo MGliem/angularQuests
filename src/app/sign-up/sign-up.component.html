@@ -1,0 +1,23 @@
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit()">
+  <label for="email">Email</label>
+  <input type="email" name="email" id="email" [(ngModel)]="user.email" #email="ngModel" required email>
+  <div *ngIf="signUpForm.submitted && email.errors">
+    <span *ngIf="email.errors?.['required']">email is required</span>
+    <span *ngIf="email.errors?.['email']">Email has not a valid format</span>
+  </div>
+  <label for="firstname">Firstname: </label>
+  <input type="text" name="firstname" id="firstname" [(ngModel)]="user.firstname" #firstname="ngModel" required minLength="3" maxLength="15">
+  <div *ngIf="signUpForm.submitted && firstname.errors">
+    <span *ngIf="firstname.errors?.['required']">Firstname is required</span>
+    <span *ngIf="firstname.errors?.['minlength']">Firstname must be more than 5 characters long</span>
+    <span *ngIf="firstname.errors?.['maxlength']">Firstname must be less than 30 characters long</span>
+  </div>
+  <label for="lastname">Lastname: </label>
+  <input type="text" name="lastname" id="lastname" [(ngModel)]="user.lastname" #lastname="ngModel" required minLength="3" maxLength="15">
+  <div *ngIf="signUpForm.submitted && lastname.errors">
+    <span *ngIf="lastname.errors?.['required']">Firstname is required</span>
+    <span *ngIf="lastname.errors?.['minlength']">Firstname must be more than 5 characters long</span>
+    <span *ngIf="lastname.errors?.['maxlength']">Firstname must be less than 30 characters long</span>
+  </div>
+  <button name="inscription" value="Submit">Inscription</button>
+</form>
